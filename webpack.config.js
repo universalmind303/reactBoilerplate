@@ -2,14 +2,14 @@ const webpack = require('webpack');
 const path = require('path');
 const ProvidePlugin = require("webpack/lib/ProvidePlugin");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 
 const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'src');
 
-var config = {
+module.exports = {
   entry: {
     app: APP_DIR + '/index.jsx',
     vendor: APP_DIR + '/vendor.jsx'
@@ -62,4 +62,3 @@ var config = {
     })
   ]
 };
-module.exports = config;
