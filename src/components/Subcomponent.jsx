@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './Subcomponent.css'
+import './Subcomponent.scss';
 
 export default () => (
   <nav className="navbar navbar-light bg-faded">
-    <a className="navbar-brand" href="#">Navbar</a>
+    <a className='navbar-brand subcomponent' href="#">Navbar</a>
   </nav>
 )

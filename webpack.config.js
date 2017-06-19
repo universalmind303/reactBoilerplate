@@ -5,9 +5,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
-
 const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'src');
+const ROOT = path.resolve(__dirname, '../')
+
 
 module.exports = {
   entry: {
@@ -35,8 +36,9 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         }
-      },  
-      { test: /\.css$/, loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'}) },
+      },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'}) },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader']) },
       { test: /\.(woff|woff2)$/,   loader: "url-loader?limit=10000&minetype=application/font-woff" },
       { test: /\.ttf$/,    loader: "file-loader" },
       { test: /\.eot$/,    loader: "file-loader" },
@@ -45,10 +47,18 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      test: /\.scss$/,
+      options: { 
+        sassLoader: { 
+          includePaths: [ path.resolve(ROOT, 'node_modules/bootstrap/scss/') ] 
+        }
+      }
+    }),
     new webpack.optimize.CommonsChunkPlugin({
         name: ["app", "vendor"]
     }),
-    new ExtractTextPlugin({filename: 'style.css',  allChunks: true }),
+    new ExtractTextPlugin({filename: 'style.css'}),
     new ProvidePlugin({
         jQuery: "jquery",
         $: "jquery",

@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import styles from '../styles/app.css'
-import Subcomponent from './Subcomponent.jsx'
-
-export default () => {
-  return (
-    <div className= {`container ${styles.test}`}>
+import Subcomponent from './Subcomponent.jsx';
+export default () => (
+  <div className='container'>
     <Subcomponent />
-    <button className="btn btn-primary">Test button</button>
+    <div className='app'>
+      <div className='nested'>nested object</div> 
+      APP 
     </div>
-  )
-}
+    <button className="btn btn-primary">Test button</button>
+  </div>
+)
+
 
