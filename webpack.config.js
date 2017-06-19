@@ -47,14 +47,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.LoaderOptionsPlugin({
-      test: /\.scss$/,
-      options: { 
-        sassLoader: { 
-          includePaths: [ path.resolve(ROOT, 'node_modules/bootstrap/scss/') ] 
-        }
-      }
-    }),
     new webpack.optimize.CommonsChunkPlugin({
         name: ["app", "vendor"]
     }),
